@@ -1,0 +1,14 @@
+{
+  "development": {
+    "database": "amazon",
+    "dialect": "postgres"
+  },
+  "test": {
+    "database": "amazon_test",
+    "dialect": "postgres"
+  },
+  "production": {
+    "database": "amazon_production",
+    "dialect": "postgres"
+  }
+}
