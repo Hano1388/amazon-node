@@ -5,12 +5,9 @@ module.exports = function(sequelize, DataTypes) {
     description: DataTypes.TEXT,
     price: DataTypes.DOUBLE,
     sale_price: DataTypes.DOUBLE
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
   });
+  Product.associate = ({ Review }) => {
+    Product.hasMany(Review);
+  };
   return Product;
 };

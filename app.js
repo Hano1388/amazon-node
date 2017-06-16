@@ -5,10 +5,12 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const sassMiddleware = require('node-sass-middleware');
+const methodOverride = require('method-override');
 
 const index = require('./routes/index');
 const users = require('./routes/users');
 const products = require('./routes/products');
+const reviews = require('./routes/reviews');
 
 const app = express();
 
@@ -21,6 +23,14 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(methodOverride((req, res) => {
+  if(req.body && typeof req.body === 'object' && '_method' in req.body)
+  {
+    const method = req.body._method;
+    delete req.body._method;
+    return method;
+  }
+}))
 app.use(cookieParser());
 app.use(sassMiddleware({
   src: path.join(__dirname, 'public'),
@@ -32,6 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.use('/products', products);
+app.use('/reviews', reviews);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

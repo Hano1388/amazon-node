@@ -1,0 +1,14 @@
+<h1>Edit Review</h1>
+<form class="" action="/reviews/<%= review.id %>" name="_method" method="post">
+  <input type="hidden" name="_method" value="PATCH" />
+  <label for="content">Content:</label>
+  <div class="">
+    <input type="text" id="content" name="content" value="<%= review.content %>" />
+  </div>
+  <div class="">
+    <label for="rating">Rating:</label>
+    <input type="text" id="rating" name="rating" value="<%= review.rating %>" />
+  </div>
+  <input type="submit" value="Submit">
+
+</form>
