@@ -6,6 +6,11 @@
 <p><strong>Created At:</strong> <%= product.createdAt %></p>
 <a href="/products/<%= product.id %>/edit">Edit</a>
 
+<form action="/products/<%= product.id %>" method="post">
+ <input type="hidden" name="_method" value="DELETE" />
+ <input type="submit" value="Delete" />
+</form>
+
 <h2>Reviews</h2>
  <form class="" action="/products/<%= product.id %>/reviews" method="post">
 

@@ -4,6 +4,22 @@ const { Product } = require('../models');
 
 const reviews = require('./reviews');
 
+// Delete product routes
+router.delete('/:id', (req, res, next) => {
+  const { id } = req.params;
+  Product
+    .findById(id)
+      .then(product => {
+        return product.destroy();
+      })
+        .then(() => {
+          res.redirect('/products')
+        })
+          .catch(error => {
+            next(error);
+          })
+})
+
 // Products index routes
 router.get('/', (req, res) => {
   Product
